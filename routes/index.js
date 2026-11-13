@@ -63,11 +63,13 @@ router.post('/contactme', async function(req, res) {
     const captchaResult = await captchaResponse.json();
 
     if (!captchaResult.success) {
-      return res.status(400).render('contactme', {
-        title: 'Contact Me',
-        error: 'CAPTCHA verification failed. Please try again.'
-      });
-    }
+  console.log('Cloudflare CAPTCHA verification failed:', captchaResult);
+
+  return res.status(400).render('contactme', {
+    title: 'Contact Me',
+    error: 'CAPTCHA verification failed. Please try again.'
+  });
+}
 
     // Configure email transporter
     const transporter = nodemailer.createTransport({
