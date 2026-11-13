@@ -326,14 +326,13 @@ and (max-width: 1024px) {
 
     body {
         padding-left: 0;
-        padding-top: 120px;
+        padding-top: 0;
     }
 
     .sidebar {
+        position: relative;
         width: 100%;
         height: auto;
-        top: 0;
-        left: 0;
         padding: 10px;
         z-index: 1000;
     }
@@ -351,7 +350,7 @@ and (max-width: 1024px) {
     }
 
     .sidebar .nav-link {
-        padding: 6px 9px;
+        padding: 8px 10px;
         font-size: 13px;
     }
 
