@@ -321,3 +321,70 @@ and (max-width: 1024px) {
         width: 100%;
     }
 }
+
+@media screen and (max-width: 600px) {
+
+    body {
+        padding-left: 0;
+        padding-top: 120px;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        z-index: 1000;
+    }
+
+    .sidebar-brand {
+        display: block;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    .sidebar .nav {
+        flex-direction: row !important;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .sidebar .nav-link {
+        padding: 6px 9px;
+        font-size: 13px;
+    }
+
+    .site-header {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .site-main {
+        padding: 15px;
+    }
+
+    .site-footer {
+        position: static;
+        width: 100%;
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .project-card {
+        margin-bottom: 15px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    video {
+        max-width: 100%;
+        height: auto;
+    }
+}
