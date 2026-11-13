@@ -1,11 +1,63 @@
+
 <%- include('partials/header', { title: title }) %>
 
-<h1>About Me</h1>
+<section class="mb-4">
+    <h2>About Me</h2>
 
-<div class="text-center">
-    <img src="/images/pfp.PNG" alt="Profile Picture" width="200">
-    <p>Hello! My name is Benjamin Hedington.</p>
-    <p>I am a Networking and IT Security student at Ontario Tech University.</p>
-</div>
+    <div class="row align-items-center">
+        <div class="col-md-4 text-center mb-3">
+            <img
+                src="/images/pfp.PNG"
+                alt="Benjamin's profile picture"
+                class="img-fluid rounded"
+                style="max-width: 300px;"
+            >
+        </div>
+
+        <div class="col-md-8">
+            <p>
+                Hello! My name is Benjamin, and I am a Networking and IT
+                Security student at Ontario Tech University.
+            </p>
+
+            <p>
+                I have been interested in technology and programming for
+                many years. I started with simple block-based coding before
+                moving on to Python and C# during high school.
+            </p>
+
+            <p>
+                I have always been interested in understanding how computers
+                work, how to build software, and how to protect systems
+                from online threats.
+            </p>
+
+            <p>
+                Ontario Tech University was my first choice for post-secondary
+                education. I previously attended summer camps here, including
+                coding, Minecraft, and LEGO robotics camps.
+            </p>
+
+            <p>
+                My interest in networking and IT security comes from wanting
+                to understand computer systems and develop skills in
+                cybersecurity.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4">
+    <h2>Introduction Video</h2>
+
+    <div class="text-center">
+        <video controls class="img-fluid rounded" style="max-width: 800px; width: 100%;">
+            <source src="/videos/video.mp4" type="video/mp4">
+            <source src="/videos/video.ogv" type="video/ogg">
+
+            Your browser does not support HTML video.
+        </video>
+    </div>
+</section>
 
 <%- include('partials/footer') %>
