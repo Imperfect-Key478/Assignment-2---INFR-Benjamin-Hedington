@@ -1,17 +1,80 @@
+
 <%- include('partials/header', { title: title }) %>
 
-<h1>My Projects</h1>
+<section class="mb-4">
+    <h2>My Projects</h2>
+</section>
 
-<div class="row">
+<div class="row g-4">
+
     <div class="col-md-6">
-        <h3>Python Projects</h3>
-        <p>Programming projects developed using Python.</p>
+        <div class="project-card h-100">
+            <h3><i class="fa-brands fa-python"></i> Web Jeopardy Game </h3>
+            <p>
+                This was my final for my first year coding class at Ontario Tech University. 
+                    It was made in Python with four others, meant to be styled like a old text based DOS game
+                    It was rudamentary with no timer, simple scoring and inability to save high scores, but it 
+                    worked and was a interesting idea to solidify my understanding.
+            </p>
+        </div>
     </div>
 
     <div class="col-md-6">
-        <h3>Portfolio Website</h3>
-        <p>My personal portfolio built using HTML, CSS, Node.js and Express.</p>
+        <div class="project-card h-100">
+            <h3><i class="fa-brands fa-python"></i> Personal Portfolio Website</h3>
+            <p>
+                Created a responsive personal portfolio using HTML and CSS.
+                The website includes multiple pages, navigation, a contact
+                form, multimedia, and responsive layouts.
+            </p>
+        </div>
     </div>
+
+    <div class="col-md-6">
+        <div class="project-card h-100">
+            <h3><i class="fa-solid fa-desktop"></i> Friend and Family Computer Repair</h3>
+            <p>
+                Provided computer repair services for friends and family,
+                including reseating RAM, replacing hard security system hard drives,
+                and nullifying electromagnetic interference from a power supply.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="project-card h-100">
+            <h3><i class="fa-brands fa-java"></i> Operating System Installation</h3>
+            <p>
+                Explored IT security concepts, including network security by installing
+                the OS softwares of Kali Linux and an attempt of using BlackArch Linux.
+                Using both a debian and arch based OS allowed me to understand other operating systems
+                apart from Windows.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="project-card h-100">
+            <h3><i class="fa-brands fa-html5"></i> Basic HTML Website</h3>
+            <p>
+                 A basic HTML website I made in grade 4, which was copied from a book I bought at a Scholastic book fair. 
+                    The website was only made in a notepad before I even knew what Git, GitHub or CSS was. 
+                    It has since been lost to time as well as the book.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="project-card h-100">
+            <h3><i class="fa-solid fa-code"></i> Scratch Projects</h3>
+            <p>
+                These projects were made on the website Scratch instead of in a proper programming language.
+                    They were made when I was 10 to 12 in my schools coding club where I was one of three members since it was held at lunch.
+                    I haven't logged back into Scratch after years but I remember being promient as a voice actor for advanced games and making simple ones myself.
+            </p>
+        </div>
+    </div>
+
 </div>
 
 <%- include('partials/footer') %>
