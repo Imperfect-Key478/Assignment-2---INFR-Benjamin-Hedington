@@ -71,14 +71,18 @@ router.post('/contactme', async function(req, res) {
   });
 }
 
-    // Configure email transporter
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
-    });
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
+  connectionTimeout: 20000,
+  greetingTimeout: 20000,
+  socketTimeout: 30000,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
 
     // Send the email
     await transporter.sendMail({
