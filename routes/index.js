@@ -22,4 +22,15 @@ router.get('/contactme', function(req, res, next) {
   res.render('contactme', { title: 'Contact Me' });
 });
 
+router.post('/contactme', function(req, res) {
+    console.log('Contact form submission:');
+    console.log(req.body);
+
+    res.render('contactme', {
+        title: 'Contact Me',
+        success: true
+    });
+});
+
+
 module.exports = router;

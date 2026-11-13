@@ -1,24 +1,80 @@
+
 <%- include('partials/header', { title: title }) %>
 
-<h1>Contact Me</h1>
+<section class="mb-4">
+    <h2><i class="fa-solid fa-envelope"></i> Contact Me</h2>
 
-<form>
-    <div class="mb-3">
-        <label class="form-label">Name</label>
-        <input type="text" class="form-control" placeholder="Enter your name">
+    <p>
+        Have a question or want to get in touch? Feel free to send me
+        a message using the form below.
+    </p>
+</section>
+<% if (typeof success !== 'undefined' && success) { %>
+    <div class="alert alert-success">
+        Your message was submitted successfully!
     </div>
+<% } %>
 
-    <div class="mb-3">
-        <label class="form-label">Email</label>
-        <input type="email" class="form-control" placeholder="Enter your email">
+<div class="row">
+    <div class="col-lg-8">
+
+        <form action="/contactme" method="POST">
+
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                >
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email address"
+                    required
+                >
+            </div>
+
+            <div class="mb-3">
+                <label for="subject" class="form-label">Subject</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="subject"
+                    name="subject"
+                    placeholder="Enter the subject"
+                    required
+                >
+            </div>
+
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea
+                    class="form-control"
+                    id="message"
+                    name="message"
+                    rows="6"
+                    placeholder="Write your message here..."
+                    required
+                ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+
+        </form>
+
     </div>
-
-    <div class="mb-3">
-        <label class="form-label">Message</label>
-        <textarea class="form-control" rows="5" placeholder="Enter your message"></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Send Message</button>
-</form>
+</div>
 
 <%- include('partials/footer') %>
