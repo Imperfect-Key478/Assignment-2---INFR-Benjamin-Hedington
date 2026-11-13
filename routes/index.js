@@ -1,7 +1,6 @@
 
 var express = require('express');
 var router = express.Router();
-var nodemailer = require('nodemailer');
 
 // Home page
 router.get('/', function(req, res, next) {
@@ -29,7 +28,6 @@ router.post('/contactme', async function(req, res) {
     const { name, email, subject, message } = req.body;
     const captchaToken = req.body['cf-turnstile-response'];
 
-    // Check that all fields are filled in
     if (!name || !email || !subject || !message) {
       return res.status(400).render('contactme', {
         title: 'Contact Me',
@@ -37,7 +35,6 @@ router.post('/contactme', async function(req, res) {
       });
     }
 
-    // Check that CAPTCHA was completed
     if (!captchaToken) {
       return res.status(400).render('contactme', {
         title: 'Contact Me',
@@ -45,7 +42,7 @@ router.post('/contactme', async function(req, res) {
       });
     }
 
-    // Verify CAPTCHA with Cloudflare
+    // Verify Cloudflare Turnstile
     const captchaResponse = await fetch(
       'https://challenges.cloudflare.com/turnstile/v0/siteverify',
       {
@@ -63,42 +60,46 @@ router.post('/contactme', async function(req, res) {
     const captchaResult = await captchaResponse.json();
 
     if (!captchaResult.success) {
-  console.log('Cloudflare CAPTCHA verification failed:', captchaResult);
+      console.log('CAPTCHA verification failed:', captchaResult);
 
-  return res.status(400).render('contactme', {
-    title: 'Contact Me',
-    error: 'CAPTCHA verification failed. Please try again.'
-  });
-}
+      return res.status(400).render('contactme', {
+        title: 'Contact Me',
+        error: 'CAPTCHA verification failed. Please try again.'
+      });
+    }
 
-    const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
-  connectionTimeout: 20000,
-  greetingTimeout: 20000,
-  socketTimeout: 30000,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
-});
-
-    // Send the email
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.CONTACT_EMAIL,
-      replyTo: email,
-      subject: 'Portfolio Contact: ' + subject,
-      text:
-        'You have received a new portfolio contact form submission.\n\n' +
-        'Name: ' + name + '\n' +
-        'Email: ' + email + '\n' +
-        'Subject: ' + subject + '\n\n' +
-        'Message:\n' + message
+    // Send email using Resend API
+    const emailResponse = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + process.env.RESEND_API_KEY
+      },
+      body: JSON.stringify({
+        from: 'Portfolio Contact Form <onboarding@resend.dev>',
+        to: [process.env.CONTACT_EMAIL],
+        reply_to: email,
+        subject: 'Portfolio Contact: ' + subject,
+        text:
+          'You have received a new portfolio contact form submission.\n\n' +
+          'Name: ' + name + '\n' +
+          'Email: ' + email + '\n' +
+          'Subject: ' + subject + '\n\n' +
+          'Message:\n' + message
+      })
     });
 
-    console.log('Contact form email sent successfully.');
+    const emailResult = await emailResponse.json();
+
+    if (!emailResponse.ok) {
+      console.error('Resend API error:', emailResult);
+
+      throw new Error(
+        emailResult.message || 'Resend could not send the email.'
+      );
+    }
+
+    console.log('Contact form email sent successfully:', emailResult.id);
 
     res.render('contactme', {
       title: 'Contact Me',
